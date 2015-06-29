@@ -14,13 +14,6 @@ public class debugstart {
 	 System.out.println("1) Your system properties    2) Your tcp connections information");
 	 Scanner sc = new Scanner(System.in);
 	 int k = sc.nextInt();
-     int option;
-     /*switch (k) {
-				     case 1:  option=1; break;
-				     case 2:  option=2; break;
-				     default: option=0; break;
-                 }*/
-     
        if(k==1)
        {   systemProperties sp = new systemProperties();
                    sp.printSystemProperties();
