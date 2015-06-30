@@ -5,7 +5,12 @@ public class systemProperties {
 	
 public void printSystemProperties()
 		{
-	        System.getProperties().list(System.out);;
+	       try{
+	           System.getProperties().list(System.out);
+	           }catch(Exception ex) 
+		       {
+		        	 System.out.println(ex.getLocalizedMessage());  
+		       }
 			
 		}
 
