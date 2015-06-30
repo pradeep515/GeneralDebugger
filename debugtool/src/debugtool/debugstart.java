@@ -1,5 +1,6 @@
 package debugtool;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class debugstart {
@@ -7,15 +8,19 @@ public class debugstart {
 	public static void main(String[] args)
 	{
 		     Boolean running = true;
+		     System.out.println(" ");
+			 System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+			 System.out.println("&&                                                             &&");
+			 System.out.println("@@@@@@@@@@@@@@@@@@@ GENERAL DEBUG TOOL @@@@@@@@@@@@@@@@@@@@@@@@@@");
+			 System.out.println("&&                                                             &&");
+			 System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+			 System.out.println(" ");
+			 
 		      while(running)
 		        { 
-		    	         System.out.println(" ");
-						 System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-						 System.out.println("@@@@@@@@@@@@@@@@@@@ GENERAL DEBUG TOOL 1@@@@@@@@@@@@@@@@@@@@@@@@@@");
-						 System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-						 System.out.println(" ");
+		    	         
 						 System.out.println("PLEASE CHOOSE YOUR OPTIONS FROM BELOW");
-						 System.out.println("1) Your system properties    2) Your tcp connections information    3) EXIT "); 
+						 System.out.println("1) Your system properties    2) Your tcp connections information    3) Network Packet Capture  4) Exit "); 
 						 Scanner sc = new Scanner(System.in);
 						 int k = sc.nextInt();
 					       if(k==1)
@@ -31,6 +36,12 @@ public class debugstart {
 					        	 
 					        }
 					       else if(k ==3)
+					       {
+					    	     PacketCapture pc = new PacketCapture(); 
+					    	     ArrayList<String> interfaceinfo = pc.getInterfaceinfo();
+					    	     pc.Interfacechooser(interfaceinfo);
+					       }
+					       else if(k ==4)
 					       {
 					    	    break;
 					       }
