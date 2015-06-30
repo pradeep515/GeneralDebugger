@@ -13,7 +13,6 @@ import java.util.Scanner;
 public class PacketCapture {
 	private String line;
 	private static String wiresharkpath;
-	private static String wiresharkpath1;
 	private static ArrayList<String> interfaceArrayList = new ArrayList<String>();
 	public ArrayList<String> getInterfaceinfo(){
 				try{
@@ -22,7 +21,6 @@ public class PacketCapture {
 			            System.out.println(" ");
 						 Scanner sc = new Scanner(System.in);
 						 wiresharkpath = sc.nextLine();
-						// wiresharkpath = wiresharkpath+"/tshark.exe -D";
 						 Process p = Runtime.getRuntime().exec(wiresharkpath+"/tshark.exe -D");
 						 InputStreamReader ir = new InputStreamReader(p.getInputStream());
 						 BufferedReader br = new BufferedReader(ir);
@@ -54,9 +52,9 @@ public class PacketCapture {
 		  	    String device = interfacechooser.get(interfaceoption-1);
 		  	    wiresharkpath = wiresharkpath+device.substring(2);
 		  	    int index = wiresharkpath.indexOf("}");
-		  	  wiresharkpath = wiresharkpath.substring(0, index+1);
-		  	  wiresharkpath = wiresharkpath+" -c 200";
-		  	   System.out.println(wiresharkpath);
+		  	    wiresharkpath = wiresharkpath.substring(0, index+1);
+		  	    wiresharkpath = wiresharkpath+" -c 200";
+		  	    System.out.println(wiresharkpath);
 		  	    Process p = Runtime.getRuntime().exec(wiresharkpath);
 		  	    InputStreamReader ir = new InputStreamReader(p.getInputStream());
 				BufferedReader br = new BufferedReader(ir);

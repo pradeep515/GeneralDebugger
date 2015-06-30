@@ -39,7 +39,11 @@ public class debugstart {
 					       {
 					    	     PacketCapture pc = new PacketCapture(); 
 					    	     ArrayList<String> interfaceinfo = pc.getInterfaceinfo();
+					    	     if(interfaceinfo.size()==0)
+					    	     {}
+					    	     else{
 					    	     pc.Interfacechooser(interfaceinfo);
+					    	     }
 					       }
 					       else if(k ==4)
 					       {
@@ -50,7 +54,7 @@ public class debugstart {
 					    	    System.out.println("No proper option is selected , going back");
 					    	   
 					       }
-					       
+					       System.out.println(" ");
 					       System.out.println("############ PRESS CTRL+C ANYTIME TO END THE PROGRAM ###############");
 				   }
 	 }
