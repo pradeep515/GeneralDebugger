@@ -41,7 +41,7 @@ public class PacketCapture {
   	public void Interfacechooser(ArrayList<String> interfacechooser)
 	  	{
   		  try{
-	  		    System.out.println("Avaiable interface on your system are as below. Please choose whichn interace you want to run the capture on. For example enter 1 for option 1");
+	  		    System.out.println("Available interfaces on your system are listed below. Please choose which interace you want to run the packet capture on. eg Press 1 for option 1");
 		  	    for(int i =0; i<=interfacechooser.size()-1; i++)
 					  	    {
 					  	    	 System.out.println(interfacechooser.get(i));
