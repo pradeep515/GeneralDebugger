@@ -13,10 +13,10 @@ import java.util.Scanner;
 public class PacketCapture {
 	private String line;
 	private static String wiresharkpath;
-	private static ArrayList<String> interfaceArrayList = new ArrayList<String>();
+	protected static ArrayList<String> interfaceArrayList ;
 	public ArrayList<String> getInterfaceinfo(){
 				try{
-		
+					    interfaceArrayList = new ArrayList<String>();
 			            System.out.println("ENTER THE PATH AT WHICH TSHARK OR WIRESHARK IS INSTALLED ");
 			            System.out.println(" ");
 						 Scanner sc = new Scanner(System.in);
