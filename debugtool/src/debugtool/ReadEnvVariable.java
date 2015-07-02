@@ -8,7 +8,7 @@ public class ReadEnvVariable {
 	public static Map<String, String> env = System.getenv();
 	
         private String envvariable;
-	    public String DisplayEnvName(String name)
+	    public String getEnvValue(String name)
 			    {
 	    	      envvariable = System.getenv(name);
 	    	       if(envvariable == null)

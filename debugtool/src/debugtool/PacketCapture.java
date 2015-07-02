@@ -12,16 +12,18 @@ import java.util.Scanner;
  */
 public class PacketCapture {
 	private String line;
-	private static String wiresharkpath;
+	private static String wiresharkhome;
 	protected static ArrayList<String> interfaceArrayList ;
+	public PacketCapture pc;
 	public ArrayList<String> getInterfaceinfo(){
 				try{
 					    interfaceArrayList = new ArrayList<String>();
-			            System.out.println("ENTER THE PATH AT WHICH TSHARK OR WIRESHARK IS INSTALLED ");
-			            System.out.println(" ");
-						 Scanner sc = new Scanner(System.in);
-						 wiresharkpath = sc.nextLine();
-						 Process p = Runtime.getRuntime().exec(wiresharkpath+"/tshark.exe -D");
+			             if(wiresharkhome==null)
+			             {
+			            	  pc = new PacketCapture();
+			            	  pc.setWireSharkHome();
+			              }
+						 Process p = Runtime.getRuntime().exec(wiresharkhome+"/tshark.exe -D");
 						 InputStreamReader ir = new InputStreamReader(p.getInputStream());
 						 BufferedReader br = new BufferedReader(ir);
 						 while((line = br.readLine()) != null)
@@ -41,14 +43,19 @@ public class PacketCapture {
   	public void Interfacechooser(ArrayList<String> interfacechooser)
 	  	{
   		  try{
-	  		    System.out.println("Available interfaces on your system are listed below. Please choose which interace you want to run the packet capture on. eg Press 1 for option 1");
+	  		    System.out.println("Available interfaces on your system are listed below. Please choose which interface you want to run the packet capture on. eg Press 1 for option 1");
 		  	    for(int i =0; i<=interfacechooser.size()-1; i++)
 					  	    {
 					  	    	 System.out.println(interfacechooser.get(i));
 					  	    }
 		  	    Scanner sc1 = new Scanner(System.in);
 		  	    int interfaceoption = sc1.nextInt();
-		  	    wiresharkpath = wiresharkpath+"/tshark -i";
+				if(wiresharkhome==null)
+				             {
+				            	  pc = new PacketCapture();
+				            	  pc.setWireSharkHome();
+				              }
+		  	    String wiresharkpath = wiresharkhome+"/tshark -i";
 		  	    String device = interfacechooser.get(interfaceoption-1);
 		  	    wiresharkpath = wiresharkpath+device.substring(2);
 		  	    int index = wiresharkpath.indexOf("}");
@@ -58,7 +65,7 @@ public class PacketCapture {
 		  	    Process p = Runtime.getRuntime().exec(wiresharkpath);
 		  	    InputStreamReader ir = new InputStreamReader(p.getInputStream());
 				BufferedReader br = new BufferedReader(ir);
-				 while((line = br.readLine()) != null)
+				while((line = br.readLine()) != null)
 						 {   
 					     System.out.println(line);
                          
@@ -67,8 +74,48 @@ public class PacketCapture {
 	         }
   		   
   		   catch(Exception ex)
-  		  {
-  			    System.out.println(ex.getMessage());
-  		  }
+				  		  {
+				  			    System.out.println(ex.getMessage());
+				  		  }
 	  	}
+  	
+  	public void packetAnalyzer()
+		  	{    
+  		        try {
+				  		   System.out.println(" ");
+						   System.out.println("Enter the abosolute file path to the pcap file including the filename");
+						   Scanner sc2 = new Scanner(System.in);
+						   String MetadataEnablercommand = sc2.nextLine();
+						    if(wiresharkhome==null)
+					             {
+					            	  pc = new PacketCapture();
+					            	  pc.setWireSharkHome();
+					              }
+					  	    String commandtoexecute = wiresharkhome+"/capinfos -A "+MetadataEnablercommand;
+					  	    System.out.println(commandtoexecute);
+					  	    Process p = Runtime.getRuntime().exec(commandtoexecute);
+					  	    InputStreamReader ir = new InputStreamReader(p.getInputStream());
+							BufferedReader br = new BufferedReader(ir);
+							while((line = br.readLine()) != null)
+									 {   
+								     System.out.println(line);
+			                         
+									 }
+							 br.close();
+  		           }
+  		         catch(Exception ex)
+  		        {     System.out.println("unable to get the file ... Please recheck your filepath and the wiresharkhome path");
+  		        	  //System.out.println(ex.getMessage() +"  "+ ex.getClass());
+  		        }
+
+
+		  	}
+  	
+  	public void setWireSharkHome()
+		  	{
+			  		System.out.println("ENTER THE PATH AT WHICH TSHARK OR WIRESHARK IS INSTALLED ");
+			        System.out.println(" ");
+					 Scanner sc = new Scanner(System.in);
+					 wiresharkhome = sc.nextLine();
+		  	}
 }
