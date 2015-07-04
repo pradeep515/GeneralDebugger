@@ -7,9 +7,9 @@ import java.io.InputStreamReader;
 public class networking {
   private String osname;
   private String line;
-	
-	
-	public void netstatRunner()  {
+  
+  public void netstatRunner() 
+  {
 	      try
 		       {
 					  systemProperties  sp = new systemProperties();
@@ -21,10 +21,8 @@ public class networking {
 								  InputStreamReader ir = new InputStreamReader(p.getInputStream());
 								  BufferedReader br = new BufferedReader(ir);
 									while((line = br.readLine()) != null)
-											 {   
-										     System.out.println(line);
-					                         
-											 }
+											 {   System.out.println(line);
+						                     }
 									 br.close();
 							  }
 					  else 

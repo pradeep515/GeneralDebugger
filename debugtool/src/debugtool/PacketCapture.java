@@ -1,6 +1,7 @@
 package debugtool;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -34,8 +35,8 @@ public class PacketCapture {
 		               
 			         }
 				catch(Exception ex)
-						{
-							 System.out.println(ex.getMessage());
+						{    wiresharkhome = null;
+							 System.out.println("Unable to check the device list , check your wireshark install entry once again");
 						}
 				return interfaceArrayList;
 			    
@@ -71,6 +72,7 @@ public class PacketCapture {
                          
 						 }
 				 br.close();
+				 
 	         }
   		   
   		   catch(Exception ex)
@@ -86,26 +88,30 @@ public class PacketCapture {
 						   System.out.println("Enter the abosolute file path to the pcap file including the filename");
 						   Scanner sc2 = new Scanner(System.in);
 						   String MetadataEnablercommand = sc2.nextLine();
-						    if(wiresharkhome==null)
-					             {
-					            	  pc = new PacketCapture();
-					            	  pc.setWireSharkHome();
-					              }
-					  	    String commandtoexecute = wiresharkhome+"/capinfos -A "+MetadataEnablercommand;
-					  	    System.out.println(commandtoexecute);
-					  	    Process p = Runtime.getRuntime().exec(commandtoexecute);
-					  	    InputStreamReader ir = new InputStreamReader(p.getInputStream());
-							BufferedReader br = new BufferedReader(ir);
-							while((line = br.readLine()) != null)
-									 {   
-								     System.out.println(line);
-			                         
-									 }
-							 br.close();
+						   File f = new File(MetadataEnablercommand);// making sure that the file is there 
+							  if(f.exists())
+							  {
+									    if(wiresharkhome==null)
+								             {
+								            	  pc = new PacketCapture();
+								            	  pc.setWireSharkHome();
+								              }
+								  	    String commandtoexecute = wiresharkhome+"/capinfos -A "+MetadataEnablercommand;
+								  	    System.out.println(commandtoexecute);
+								  	    Process p = Runtime.getRuntime().exec(commandtoexecute);
+								  	    InputStreamReader ir = new InputStreamReader(p.getInputStream());
+										BufferedReader br = new BufferedReader(ir);
+										while((line = br.readLine()) != null)
+												 {   
+											     System.out.println(line);
+						                         
+												 }
+										 br.close();
+							  }		 
   		           }
   		         catch(Exception ex)
-  		        {     System.out.println("unable to get the file ... Please recheck your filepath and the wiresharkhome path");
-  		        	  //System.out.println(ex.getMessage() +"  "+ ex.getClass());
+  		        {     System.out.println("unable to get the file ... Please recheck your filepath  and the wiresharkhome path");
+  		        	  wiresharkhome = null;
   		        }
 
 
@@ -115,7 +121,7 @@ public class PacketCapture {
 		  	{
 			  		System.out.println("ENTER THE PATH AT WHICH TSHARK OR WIRESHARK IS INSTALLED ");
 			        System.out.println(" ");
-					 Scanner sc = new Scanner(System.in);
-					 wiresharkhome = sc.nextLine();
+				    Scanner sc = new Scanner(System.in);
+					wiresharkhome = sc.nextLine();
 		  	}
 }

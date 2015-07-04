@@ -19,18 +19,18 @@ public class debugstart {
 			 System.out.println(" ");
 			 
 		      while(running)
-		        { 
+		        {        systemProperties sp = new systemProperties();
 		    	         System.out.println(" ");
 						 System.out.println("PLEASE CHOOSE YOUR OPTIONS FROM BELOW");
 						 System.out.println(" ");
-						 System.out.println("1) Print System Properties    2) Print TCP/UDP/Port information    3) Network Packet Capture    4) Java Diagnoistic tool    5) Exit"); 
+						 System.out.println("1) Print System Properties    2) Print TCP/UDP/Port information    3) Network Packet Capture    4) Java Diagnoistic tool    5) clear Screen");
+						 System.out.println("6) Exit");
 						 Scanner sc = new Scanner(System.in);
 					try{
 						 int k = sc.nextInt();
 					       if(k==1)
-							       {   systemProperties sp = new systemProperties();
+							       {  
 							                   sp.printSystemProperties();
-							    	    
 							       }
 					       
 					       else if(k==2)
@@ -46,7 +46,7 @@ public class debugstart {
 							    	    	 System.out.println(" ");
 											 System.out.println("PLEASE CHOOSE YOUR OPTIONS FROM BELOW");
 											 System.out.println(" ");
-											 System.out.println("1) Packet Capture    2) Packet MetaData   3) Return to Main Menu"); 
+											 System.out.println("1) Packet Capture    2) Packet MetaData   3) Return to Main Menu   4) Clear Screen"); 
 											 Scanner sc1 = new Scanner(System.in);
 											 int packetoption = sc1.nextInt();
 											 
@@ -67,13 +67,17 @@ public class debugstart {
 														 {
 															 break;
 														 }
+											 else if(packetoption==3) 
+														 {
+															  sp.clearScreen();
+														 }
 											 else  
 														  {
 															  System.out.println("Invalid option choosen , so returning back to the current menu");
 														 }
 							    	    }
 							       }
-					       else if(k==5)
+					       else if(k==6)
 							       {
 							    	    break;
 							       }
@@ -81,6 +85,11 @@ public class debugstart {
 							       {
 							    	    javaDiagnoistictool jd = new javaDiagnoistictool();
 							    	    jd.getRunningJavaProcessids();
+							       }
+					       else if(k==5)
+							       {  
+					    	              sp.clearScreen(); 
+
 							       }
 					       else
 							       {

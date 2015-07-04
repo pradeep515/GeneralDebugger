@@ -36,4 +36,21 @@ public String getEnvValue(String name)
 			   	    	    }
     	       return envvariable;
 		    }
+
+public void clearScreen()
+			{
+	            try {
+							 systemProperties sp = new systemProperties();
+							 String osname1 = sp.getOSName();
+							   if(osname1.contains("Win")) 
+							   {   
+								  // Runtime.getRuntime().exec("cls");
+								   System.out.print("\033[H\033[2J"); 
+
+			  				   }
+	               } catch(Exception ex)
+					            {
+					            	      System.out.println(ex.getMessage() + " So not able to clear screen...better luck next time");
+					            }
+			}
 }
