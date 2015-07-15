@@ -106,6 +106,10 @@ public class debugstart {
 																	 int javaprocid = sc2.nextInt();
 														             jd.getthreaddump(javaprocid, javaProcessids);
 																 }
+													 else if(packetoption==2) 
+																 {
+																	 jd.analyseThreaddump();
+																 }
 													 else if(packetoption==3) 
 																 {
 																	 break;

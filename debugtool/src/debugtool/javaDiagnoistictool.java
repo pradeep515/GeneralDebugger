@@ -1,8 +1,10 @@
 package debugtool;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * @author pkaliset
@@ -68,10 +70,32 @@ public class javaDiagnoistictool {
 		   }
 	}
 	
-	public void analysethreaddump()
-	{
+	public void analyseThreaddump()
+			{    
+		        try{
+								 System.out.println("Enter the port no ... this would used to host the analyzed data which can be accessed from browser");
+								 Scanner sc1 = new Scanner(System.in);
+								 int port = sc1.nextInt();
+								 System.out.println("Enter the Absolute path of the heap file to be analysed");
+								 Scanner sc = new Scanner(System.in);
+								 String filename = sc.next();
+								 File f = new File(filename);// making sure that the file is there 
+								  if(f.exists())
+										  {
+												 String cmd = JAVA_HOME + "/bin/jhat -port "+port+" "+filename;
+												 Process p = Runtime.getRuntime().exec(cmd);
+												 System.out.println("Command successfully executed...To analysed the heap dump go to the following url [http://localhost:portno]");
+										  }
+								  else
+										  {
+											     System.out.println("The file that was specified does not exist..Please check the path and permissions again");
+										  }
+			        }catch(Exception ex)
+							{
+							       System.out.println("Exception thrown....Please check the file path and try again");	
+							}
 		
-	}
+			}
 	
 	
 }
