@@ -27,7 +27,13 @@ public class networking {
 							  }
 					  else 
 							  {
-								  System.out.println("Yet to be implemented for linux");
+						  Process p = Runtime.getRuntime().exec("netstat -naot");
+						  InputStreamReader ir = new InputStreamReader(p.getInputStream());
+						  BufferedReader br = new BufferedReader(ir);
+							while((line = br.readLine()) != null)
+									 {   System.out.println(line);
+				                     }
+							 br.close();
 							  }
 		    	  
 		        }catch(Exception ex)

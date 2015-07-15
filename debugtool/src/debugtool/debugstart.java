@@ -67,9 +67,13 @@ public class debugstart {
 														 {
 															 break;
 														 }
-											 else if(packetoption==3) 
+											 else if(packetoption==4) 
 														 {
 															  sp.clearScreen();
+															  for(int clear = 0; clear < 50; clear++)
+															   {
+															      System.out.println("\n") ;
+															   }
 														 }
 											 else  
 														  {
@@ -83,12 +87,50 @@ public class debugstart {
 							       }
 					       else if(k==4)
 							       {
-							    	    javaDiagnoistictool jd = new javaDiagnoistictool();
-							    	    jd.getRunningJavaProcessids();
-							       }
+					    	   			while(running)
+									    	    {	 
+				                                     javaDiagnoistictool jd = new javaDiagnoistictool();				                
+									    	    	 System.out.println(" ");
+													 System.out.println("PLEASE CHOOSE YOUR OPTIONS FROM BELOW");
+													 System.out.println(" ");
+													 System.out.println("1) Create Thread Dump    2) Analyze Thread dump   3) Return to Main Menu   4) Clear Screen"); 
+													 Scanner sc1 = new Scanner(System.in);
+													 int packetoption = sc1.nextInt();
+													 
+													 if(packetoption==1)
+																 {
+														             System.out.println(" ");
+														             System.out.println("Below are the java Process that are running on your system. please enter the java process that you want to create thread dump on by typing the index no for that process ");
+														             ArrayList<String> javaProcessids = jd.getRunningJavaProcessids();
+																	 Scanner sc2 = new Scanner(System.in);
+																	 int javaprocid = sc2.nextInt();
+														             jd.getthreaddump(javaprocid, javaProcessids);
+																 }
+													 else if(packetoption==3) 
+																 {
+																	 break;
+																 }
+										             else if(packetoption==4) 
+																 {
+																	  sp.clearScreen();
+																	  for(int clear = 0; clear < 50; clear++)
+																	   {
+																	      System.out.println("\n") ;
+																	   }
+																 }
+										             else  
+													  {
+														  System.out.println("Invalid option choosen , so returning back to the current menu");
+													  }
+											      }
+							         }
 					       else if(k==5)
 							       {  
 					    	              sp.clearScreen(); 
+					    	              for(int clear = 0; clear < 50; clear++)
+										   {
+										      System.out.println("\n") ;
+										   }
 
 							       }
 					       else

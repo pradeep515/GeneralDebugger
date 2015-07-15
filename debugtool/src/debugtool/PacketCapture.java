@@ -41,6 +41,10 @@ public class PacketCapture {
 				return interfaceArrayList;
 			    
 		    }
+	
+	
+	
+	
   	public void Interfacechooser(ArrayList<String> interfacechooser)
 	  	{
   		  try{
@@ -62,7 +66,7 @@ public class PacketCapture {
 		  	    int index = wiresharkpath.indexOf("}");
 		  	    wiresharkpath = wiresharkpath.substring(0, index+1);
 		  	    wiresharkpath = wiresharkpath+" -c 200";
-		  	    System.out.println(wiresharkpath);
+		  	   // System.out.println(wiresharkpath);
 		  	    Process p = Runtime.getRuntime().exec(wiresharkpath);
 		  	    InputStreamReader ir = new InputStreamReader(p.getInputStream());
 				BufferedReader br = new BufferedReader(ir);
@@ -81,6 +85,8 @@ public class PacketCapture {
 				  		  }
 	  	}
   	
+  	
+  	
   	public void packetAnalyzer()
 		  	{    
   		        try {
@@ -97,7 +103,7 @@ public class PacketCapture {
 								            	  pc.setWireSharkHome();
 								              }
 								  	    String commandtoexecute = wiresharkhome+"/capinfos -A "+MetadataEnablercommand;
-								  	    System.out.println(commandtoexecute);
+								  	   // System.out.println(commandtoexecute);
 								  	    Process p = Runtime.getRuntime().exec(commandtoexecute);
 								  	    InputStreamReader ir = new InputStreamReader(p.getInputStream());
 										BufferedReader br = new BufferedReader(ir);
